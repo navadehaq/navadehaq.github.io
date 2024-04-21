@@ -271,13 +271,16 @@ defaults:
       layout: talk
       author_profile: true
       share: true
+  # _test
   - scope:
       path: ""
       type: test
     values:
-      layout: talk
+      layout: single
       author_profile: true
       share: true
+      comment: true
+
 
 
 # Sass/SCSS
