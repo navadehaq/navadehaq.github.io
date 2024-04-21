@@ -1,6 +1,6 @@
 ---
 permalink: /test/
-title: "Test"
+title: "TEST!"
 ---
 
-This is a test.
+Cool
