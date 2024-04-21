@@ -1,6 +1,6 @@
 ---
 permalink: /test/
-title: "TEST!"
+title: "TEST"
 ---
 
-Cool
+Why is this not working
