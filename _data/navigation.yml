@@ -1,6 +1,6 @@
 # main links links
 main:
-  - title: "Projects"
+  - title: "Publications"
     url: /publications/
 
   - title: "Portfolio"
@@ -12,5 +12,5 @@ main:
   - title: "Guide"
     url: /markdown/
 
-  - title: "Test"
-    url: /test/
+  - title: "Projects"
+    url: /projects/
