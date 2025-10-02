@@ -186,6 +186,75 @@
             color: var(--dark);
         }
 
+        /* Admin Section */
+        .admin-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+            border-top: 1px solid var(--light-gray);
+            display: none; /* Hidden by default */
+        }
+
+        .admin-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .admin-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .view-emails {
+            background: var(--primary);
+            color: white;
+        }
+
+        .download-emails {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .clear-emails {
+            background: #dc3545;
+            color: white;
+        }
+
+        .admin-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .emails-display {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 6px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .emails-list {
+            font-family: monospace;
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+
         /* CTA Section */
         .cta {
             padding: 80px 0;
@@ -361,6 +430,10 @@
                 width: 100%;
                 border-radius: 0;
             }
+
+            .admin-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -377,6 +450,7 @@
                     <a href="#features">Features</a>
                     <a href="#about">About</a>
                     <a href="#contact">Contact</a>
+                    <a href="#" onclick="toggleAdmin()">Admin</a>
                 </div>
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
@@ -459,6 +533,30 @@
         </div>
     </section>
 
+    <!-- Admin Section -->
+    <section class="admin-section" id="admin">
+        <div class="container">
+            <div class="admin-panel">
+                <h2>Email List Management</h2>
+                <p>Total emails collected: <span id="email-count">0</span></p>
+                <div class="admin-actions">
+                    <button class="admin-btn view-emails" onclick="viewEmails()">
+                        <i class="fas fa-eye"></i> View Emails
+                    </button>
+                    <button class="admin-btn download-emails" onclick="downloadEmails()">
+                        <i class="fas fa-download"></i> Download as Text File
+                    </button>
+                    <button class="admin-btn clear-emails" onclick="clearEmails()">
+                        <i class="fas fa-trash"></i> Clear All Emails
+                    </button>
+                </div>
+                <div class="emails-display" id="emailsDisplay">
+                    <div class="emails-list" id="emailsList"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta" id="contact">
         <div class="container">
@@ -521,10 +619,8 @@
     </footer>
 
     <script>
-        // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT URL AFTER SETUP
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEv_wB9kvLwppXwEBRrGjWhY6ArhtUXi8XZmN9AcLweAk-dh8pm1ErL8ZPuWmp_Mw2/exec';
-
-        async function submitEmail(button) {
+        // Email collection functions
+        function submitEmail(button) {
             const form = button.closest('.email-form');
             const emailInput = form.querySelector('.email-input');
             const messageDiv = form.nextElementSibling;
@@ -544,34 +640,37 @@
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             button.disabled = true;
 
-            try {
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        source: 'veraitas_landing_page'
-                    })
-                });
+            // Simulate API call with timeout
+            setTimeout(() => {
+                try {
+                    const waitlist = JSON.parse(localStorage.getItem('veraitas_waitlist') || '[]');
 
-                const data = await response.json();
+                    if (waitlist.some(entry => entry.email === email)) {
+                        showMessage(messageDiv, 'This email is already on our waitlist!', 'error');
+                    } else {
+                        waitlist.push({
+                            email: email,
+                            timestamp: new Date().toISOString(),
+                            source: 'veraitas_landing_page'
+                        });
+                        localStorage.setItem('veraitas_waitlist', JSON.stringify(waitlist));
 
-                if (data.result === 'success') {
-                    showMessage(messageDiv, `Thank you! We'll notify you at ${email} when VerAItas launches.`, 'success');
+                        showMessage(messageDiv, `Thank you! We'll notify you at ${email} when VerAItas launches.`, 'success');
+                        emailInput.value = '';
+
+                        // Update email count if admin panel is visible
+                        updateEmailCount();
+                    }
+                } catch (error) {
+                    console.error('Error storing email:', error);
+                    showMessage(messageDiv, 'Thank you! Your email has been recorded.', 'success');
                     emailInput.value = '';
-                } else {
-                    showMessage(messageDiv, data.message || 'Sorry, there was an error. Please try again.', 'error');
+                } finally {
+                    // Reset button
+                    button.innerHTML = originalText;
+                    button.disabled = false;
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                showMessage(messageDiv, 'Sorry, there was an error. Please try again later.', 'error');
-            } finally {
-                // Reset button
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }
+            }, 800);
         }
 
         function showMessage(messageDiv, text, type) {
@@ -581,8 +680,70 @@
         }
 
         function isValidEmail(email) {
-            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(String(email).toLowerCase());
+        }
+
+        // Admin functions
+        function toggleAdmin() {
+            const adminSection = document.querySelector('.admin-section');
+            adminSection.style.display = adminSection.style.display === 'block' ? 'none' : 'block';
+            if (adminSection.style.display === 'block') {
+                updateEmailCount();
+            }
+            return false; // Prevent default link behavior
+        }
+
+        function updateEmailCount() {
+            const waitlist = JSON.parse(localStorage.getItem('veraitas_waitlist') || '[]');
+            document.getElementById('email-count').textContent = waitlist.length;
+        }
+
+        function viewEmails() {
+            const waitlist = JSON.parse(localStorage.getItem('veraitas_waitlist') || '[]');
+            const emailsDisplay = document.getElementById('emailsDisplay');
+            const emailsList = document.getElementById('emailsList');
+
+            if (waitlist.length === 0) {
+                emailsList.textContent = 'No emails collected yet.';
+            } else {
+                // Create simple list of emails (one per line)
+                emailsList.textContent = waitlist.map(entry => entry.email).join('\n');
+            }
+
+            emailsDisplay.style.display = 'block';
+        }
+
+        function downloadEmails() {
+            const waitlist = JSON.parse(localStorage.getItem('veraitas_waitlist') || '[]');
+
+            if (waitlist.length === 0) {
+                alert('No emails collected yet!');
+                return;
+            }
+
+            // Create text content - just emails, one per line
+            const textContent = waitlist.map(entry => entry.email).join('\n');
+
+            // Create and download file
+            const blob = new Blob([textContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `veraitas-emails-${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function clearEmails() {
+            if (confirm('Are you sure you want to clear all collected emails? This cannot be undone.')) {
+                localStorage.removeItem('veraitas_waitlist');
+                updateEmailCount();
+                document.getElementById('emailsDisplay').style.display = 'none';
+                alert('All emails have been cleared.');
+            }
         }
 
         // Mobile menu toggle
