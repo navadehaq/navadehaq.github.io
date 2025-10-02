@@ -21,8 +21,11 @@
       e.preventDefault();
       const email = document.getElementById("email").value;
 
-      fetch("YOUR_WEB_APP_URL", {
+      fetch("https://script.google.com/macros/s/AKfycbzyycZzt2TSzQWjh1tJWg0ODjXIM4G2LHJ-QoTrO180qOjyLU1ZPmF3DzplxnDjGY0WxQ/exec", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json"   // ✅ REQUIRED
+        },
         body: JSON.stringify({ email: email })
       })
       .then(res => res.text())
