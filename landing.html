@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Email Tracking</title>
+</head>
+<body>
+  <h2>Email Tracking Form</h2>
+  <form id="emailForm">
+    <label for="email">Enter Email:</label>
+    <input type="email" id="email" name="email" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script>
+    const form = document.getElementById("emailForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+
+      fetch("YOUR_WEB_APP_URL", {
+        method: "POST",
+        body: JSON.stringify({ email: email })
+      })
+      .then(res => res.text())
+      .then(res => {
+        status.textContent = "Email submitted successfully!";
+        form.reset();
+      })
+      .catch(err => {
+        console.error(err);
+        status.textContent = "Error submitting email.";
+      });
+    });
+  </script>
+</body>
+</html>
