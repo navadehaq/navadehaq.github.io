@@ -8,9 +8,9 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Navade Haq's Website"
+title                    : "navade haq's website"
 title_separator          : "-"
-name                     : &name "Navade Haq"
+name                     : &name "navade haq"
 description              : &description ""
 url                      : https://navade.me # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -22,11 +22,11 @@ repository               : "navadehaq/navadehaq.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Navade Haq"
+  name             : "navade haq"
   pronouns         : # example: "she/her"
-  bio              : "First-year Electrical Engineering Student @ Georgia Tech. Interested in Signal Processing and Medical Technology."
-  location         : "Michigan"
-  employer         : "Georgia Tech"
+  bio              : "first-year electrical engineering Student @ georgia tech interested in signal processing and medical technology"
+  location         : "michigan"
+  employer         : "georgia tech"
   uri              : # URL
   email            : "haqnavade@gmail.com"
 
