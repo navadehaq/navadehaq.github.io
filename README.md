@@ -1,4 +1,0 @@
-
-# Academic Pages
-
-Personal Websote
