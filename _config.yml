@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Navade Haq"
+title                    : "Navade Haq's Website"
 title_separator          : "-"
 name                     : &name "Navade Haq"
 description              : &description ""
@@ -22,7 +22,7 @@ repository               : "navadehaq/navadehaq.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : #idk
+  name             : "Navade Haq"
   pronouns         : # example: "she/her"
   bio              : #idk
   location         : "Michigan"
