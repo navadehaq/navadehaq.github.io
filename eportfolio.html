@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ePortfolio</title>
+  <style>
+    body {
+      font-family: Times New Roman, serif;
+      font-size: 15px;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ── Top nav bar ── */
+    #navbar {
+      background: #1a1a6e;
+      padding: 5px 12px;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    #navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 18px;
+    }
+    #navbar a:hover { text-decoration: underline; }
+
+    /* ── Page wrapper ── */
+    #wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 18px 20px 40px;
+    }
+
+    /* ── Header / intro block ── */
+    #header-block {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    #header-block img {
+      width: 140px;
+      height: 170px;
+      object-fit: cover;
+      border: 1px solid #888;
+      flex-shrink: 0;
+    }
+    #header-text {
+      flex: 1;
+    }
+    #header-text h1 {
+      font-size: 18px;
+      margin: 0 0 4px;
+      font-weight: bold;
+    }
+    #header-text p.tagline {
+      margin: 0 0 12px;
+      font-style: italic;
+    }
+
+    /* ── Contact table ── */
+    table.contact {
+      border: 1px solid #888;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    table.contact td {
+      border: 1px solid #aaa;
+      padding: 3px 10px;
+    }
+    table.contact td:first-child {
+      text-align: right;
+      font-weight: bold;
+      background: #f4f4f4;
+      white-space: nowrap;
+    }
+
+    /* ── Bio paragraph ── */
+    #bio {
+      margin: 0 0 22px;
+      line-height: 1.55;
+    }
+    #bio a { color: #00e; }
+
+    hr { border: none; border-top: 1px solid #ccc; margin: 18px 0; }
+
+    /* ── Section headings ── */
+    h2 {
+      font-size: 16px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2px;
+      margin-bottom: 10px;
+    }
+
+    /* ── Link grid (like the bio links on Freitas page) ── */
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px 0;
+      margin-bottom: 22px;
+    }
+    .link-grid a {
+      color: #00e;
+      font-size: 13.5px;
+      display: block;
+      padding: 2px 0;
+    }
+
+    /* ── Section content ── */
+    .section { margin-bottom: 28px; }
+    .section p { line-height: 1.6; margin: 0 0 10px; }
+    .section ul { margin: 0 0 10px 20px; line-height: 1.7; }
+
+    /* ── Project entry ── */
+    .project {
+      margin-bottom: 20px;
+      padding-left: 12px;
+      border-left: 3px solid #1a1a6e;
+    }
+    .project h3 { margin: 0 0 4px; font-size: 15px; }
+    .project p  { margin: 3px 0; line-height: 1.55; }
+
+    /* ── Quote block ── */
+    blockquote.quote {
+      font-style: italic;
+      margin: 16px 0;
+      padding: 8px 14px;
+      border-left: 3px solid #555;
+      color: #333;
+    }
+    blockquote.quote cite {
+      display: block;
+      font-style: normal;
+      font-size: 13px;
+      margin-top: 4px;
+      color: #555;
+    }
+
+    /* ── Footer ── */
+    #footer {
+      font-size: 12px;
+      color: #555;
+      border-top: 1px solid #ccc;
+      padding-top: 8px;
+      margin-top: 30px;
+    }
+
+    a { color: #00e; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     NAV BAR
+════════════════════════════════════════ -->
+<div id="navbar">
+  <a href="#about">About</a>
+  <a href="#career">Career Goals</a>
+  <a href="#projects">Projects</a>
+  <a href="#resume">Resume</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<div id="wrapper">
+
+  <!-- ══════════════════════════════════════
+       HEADER — photo + tagline + contact table
+  ══════════════════════════════════════ -->
+  <div id="header-block">
+
+    <!-- Replace src with your own photo path -->
+    <img src="headshot.jpg" alt="Photo of Navade" />
+
+    <div id="header-text">
+      <h1>Navade Haq</h1>
+      <p class="tagline">
+        Undergraduate Honors Electrical Engineering student at
+        Georgia Tech &mdash; Semiconductor Devices and Chip Design
+      </p>
+
+      <table class="contact">
+        <tr>
+          <td>Email:</td>
+          <td><a href="mailto:nhaq9@gatech.edu">nhaq9@gatech.edu</a></td>
+        </tr>
+        <tr>
+          <td>LinkedIn:</td>
+          <td><a href="https://linkedin.com/in/navade" target="_blank">linkedin.com/in/navade</a></td>
+        </tr>
+        <tr>
+          <td>GitHub:</td>
+          <td><a href="https://github.com/navadehaq" target="_blank">github.com/navadehaq</a></td>
+        </tr>
+        <tr>
+          <td>Location:</td>
+          <td>Atlanta, Georgia</td>
+        </tr>
+      </table>
+    </div>
+  </div><!-- /header-block -->
+
+  <!-- ══════════════════════════════════════
+       SHORT BIO PARAGRAPH  (required: intro/welcome)
+  ══════════════════════════════════════ -->
+  <div id="bio">
+    <p>
+      I am a first year electrical engineering student at Georgia Tech with interests
+      across the semiconductor spectrum, from materials to architectures. This ePortfolio,
+      designed for my ECE 1100 class, serves as an overview of my professional and academic
+      development. I plan to update this website as I seek internships and research opportunities
+      in semiconductor fabrication, design, and characterization.
+    </p>
+  </div>
+
+  <hr />
+
+  <!-- ══════════════════════════════════════
+       ABOUT ME / BIOGRAPHY
+  ══════════════════════════════════════ -->
+  <div class="section" id="about">
+    <h2>About Me</h2>
+
+    <p>
+      In my first year at Georgia Tech, I identified semiconductors as the subfield I wanted to pursue.
+      I began my exploration with devices, joining Dr. William Hunt's Compound Semiconductor Products VIP team, where
+      I have been involved in the characterization of GaN HEMTs (gallium nitride high electron mobility transistors).
+      This experience has sparked my interest in compound semiconductor devices, which I will pursue
+      further this summer at Dr. Nicholas Miller's lab at Michigan State University, performing trap characterization
+      and TCAD simulation of GaN HEMTs. Outside of my GaN research, I have learned more about the equipment and processes involved in fabrication
+      at Georgia Tech's Institute for Matter and Systems cleanroom.
+    </p>
+    <p>
+      While I primarily have experience in devices, I also have experience on the circuit side. I spent 6 weeks completing the rigorous onboarding
+      process for SiliconJackets, a club at GT focused on chip design from
+      ideation to tape out. I gained experience with industry tools in RTL design, digital verification, and physical design,
+      which provided me with deep insight into the various areas of chip design. After passing through all 3 stages, I chose
+      to join the physical design subteam, as it aligned most with my interests.
+    </p>
+
+    <p>
+      I grew up in Ohio, India, China, and Michigan, moving around as my dad pursued different manufacturing related careers.
+      I was able to learn about how global manufacturing and supply chains operate in the automotive space, which proved valuable
+      last summer when I interned as a manufacturing engineer at Yanfeng Automotive Interiors. I hope to bridge my technical background in
+      semiconductors with my internship experience in manufacturing, with the short term goal of gaining a process or yield engineering
+      internship position to cultivate my skillset and deepen my knowledge.
+    </p>
+
+    <figure style="margin: 20px auto; text-align: center; max-width: 350px;">
+      <img src="curvetracer.png" alt="GaN HEMT IV Characterization" style="width: 100%; border: 1px solid #888;">
+      <figcaption style="font-size: 13.5px; font-style: italic; margin-top: 6px;">
+        GaN HEMT IV Characterization
+      </figcaption>
+    </figure>
+
+  </div>
+
+  <hr />
+
+  <!-- ══════════════════════════════════════
+       CAREER GOALS
+  ══════════════════════════════════════ -->
+  <div class="section" id="career">
+    <h2>Career Goals</h2>
+    <p>
+      I hope to complete the 4+1 program at Georgia Tech, earning a Master's degree in Electrical and Computer Engineering after my
+      Bachelor's. I then want to work in semiconductor processing for a few years, and then get an MBA and move into management roles.
+    </p>
+    <p><strong>Steps to get there (Short-Term Goals):</strong></p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-date">Fall 2026 — Spring 2028</span>
+        <div class="timeline-content">
+          <strong>Undergraduate Research</strong>
+          <p>Join a semiconductor lab to gain 2+ years of sustained technical depth and contribute to publications. Remain in one place to immerse myself and gain deep understanding.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-date">Summer 2027</span>
+        <div class="timeline-content">
+          <strong>Industry Internship (Process/Yield Engineering)</strong>
+          <p>Complete a 3-month internship at a major foundry like Intel, TSMC, or GlobalFoundries. Apply cleanroom experience to high-volume manufacturing environments.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-date">September 2027</span>
+        <div class="timeline-content">
+          <strong>BS/MS Program Application</strong>
+          <p>Apply for the Electrical and Computer Engineering 4+1 BS/MS program. Must maintain a 3.5+ GPA and get recommendation letters. This accelerates my path to a specialized Master’s degree by one year.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-date">December 2028 — December 2029</span>
+        <div class="timeline-content">
+          <strong>Bachelor’s Graduation & Master’s Graduation</strong>
+          <p>Graduate with Honors in Electrical Engineering and complete the final year of the Master’s degree focusing on semiconductor technology.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-date">2032 and Beyond</span>
+        <div class="timeline-content">
+          <strong>MBA and Transition to Management</strong>
+          <p>After 2-3 years of hands on engineering experience, pursue an MBA to add business experience to my technical knowledge, shifting into management roles.</p>
+        </div>
+      </div>
+    </div>
+
+    <figure style="margin: 20px auto; text-align: center; max-width: 350px;">
+      <img src="cleanroom.jpg" alt="IMS Cleanroom at Georgia Tech" style="width: 100%; border: 1px solid #888;">
+      <figcaption style="font-size: 13.5px; font-style: italic; margin-top: 6px;">
+        IMS Cleanroom <br>
+        <span style="font-size: 11px; font-style: normal;">
+          Source: <a href="https://research.gatech.edu/microelectronics-momentum-drives-nations-semiconductor-resurgence" target="_blank">Georgia Tech</a>
+        </span>
+      </figcaption>
+    </figure>
+
+  </div>
+
+  <hr />
+
+  <!-- ══════════════════════════════════════
+       TECHNICAL PROJECTS
+  ══════════════════════════════════════ -->
+  <div class="section" id="projects">
+    <h2>Technical Projects and Coursework</h2>
+
+    <div class="project">
+      <h3><a href="projects/calculator.html">64-Bit Calculator</a></h3>
+      <p><em>Georgia Tech SiliconJackets | Spring 2026</em></p>
+      <p>Performed digital design, digital verification, and physical design of a 64-bit adder module as onboarding for the SiliconJackets
+        chip design club</p>
+    </div>
+
+    <div class="project">
+      <h3><a href="projects/fpga.html">FPGA Traffic Light Controller</a></h3>
+      <p><em> Georgia Tech ECE 1100 Discovery Project | Spring 2026</em></p>
+      <p>Finite state machine based traffic light controller, implemented with an FPGA board</p>
+    </div>
+
+    <h3 style="font-size: 15px; margin: 25px 0 10px; border-bottom: 1px dashed #ccc; display: inline-block;">Relevant Coursework</h3>
+
+    <table class="contact" style="width: 100%; margin-bottom: 20px;">
+      <tr>
+        <td style="width: 200px;">ECE 2020: Fundamentals of Digital System Design</td>
+        <td>
+          Computer system and digital design principles. Switch and gate design, Boolean algebra,
+          number systems, arithmetic, storage elements. Datapath, memory organization.
+          Instruction set architecture, assembly language.
+        </td>
+      </tr>
+      <tr>
+        <td>ECE 2040: Circuit Analysis</td>
+        <td>
+          Basic concepts of DC and AC circuit theory and analysis. Developed proficiency in nodal
+          and mesh analysis, Thevenin/Norton equivalents, and steady-state sinusoidal analysis.
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+  <hr />
+
+  <!-- ══════════════════════════════════════
+       RESUME
+  ══════════════════════════════════════ -->
+  <div class="section" id="resume">
+    <h2>Resume</h2>
+    <p>
+      <a href="resume.pdf"><strong>Download my Resume (PDF)</strong></a>
+    </p>
+    <!-- Embedded resume preview (optional) -->
+    <iframe
+      src="resume.pdf"
+      width="100%"
+      height="600"
+      style="border: 1px solid #888;"
+      title="Resume">
+      Your browser does not support embedded PDFs.
+      <a href="resume.pdf">Download the resume here.</a>
+    </iframe>
+  </div>
+
+  <hr />
+
+  <!-- ══════════════════════════════════════
+       SKILLS  (optional section)
+  ══════════════════════════════════════ -->
+  <div class="section" id="skills">
+    <h2>Skills</h2>
+    <table class="contact" style="width:auto;">
+      <tr>
+        <td>Programming Languages:</td>
+        <td>Python, MATLAB, R, SystemVerilog</td>
+      </tr>
+      <tr>
+        <td>Tools:</td>
+        <td>Cadence Xcelium/Simvision/Innovus, Curve Tracer (IV Characterization)</td>
+      </tr>
+      <tr>
+        <td>Languages:</td>
+        <td>English, Urdu, Hindi, French</td>
+      </tr>
+    </table>
+  </div>
+
+  <hr />
+
+  <!-- ══════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════ -->
+  <div class="section" id="contact">
+    <h2>Contact</h2>
+    <p>
+      Feel free to reach out via email at
+      <a href="mailto:nhaq9@gatech.edu">nhaq9@gatech.edu</a> or connect with me on
+      <a href="https://linkedin.com/in/navade" target="_blank">LinkedIn</a>.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <div id="footer">
+    <p>
+      &copy; 2026 Navade Haq &mdash; ECE 1100 ePortfolio, Georgia Institute of Technology.
+      Last updated: March 31 2026.
+    </p>
+  </div>
+
+</div><!-- /wrapper -->
+</body>
+</html>
