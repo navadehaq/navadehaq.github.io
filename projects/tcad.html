@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GaN HEMT TCAD Simulation</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a href="../eportfolio.html">← Back to Portfolio</a>
+
+  <main class="project-page">
+    <h1>GaN HEMT TCAD Simulation</h1>
+    <p><em>Georgia Tech ECE 1100 Discovery Project | Spring 2026</em></p>
+
+    <section>
+      <h2>Project Idea and Background</h2>
+      <p>
+        GaN HEMTs are semiconductor devices that have applications in high power and high frequency electronics:
+        <ul>
+           <li>Bandgap: Energy needed to move electrons. High bandgap allows for reliability with high voltage and temperature.
+          </li>
+           <li>Electron Mobility: How fast an electron can move. High mobility for high frequency (fast switching).
+          </li>
+          <li> Essentially a high speed switch: ideal for fast chargers, electric vehicles, RF amplifiers, and 5G technology.
+          </li>
+        </ul>
+
+        Sentaurus TCAD is a very powerful tool used to simulate device behavior and fabrication:
+        <ul>
+           <li>Breaks devices into mesh elements 
+          </li>
+           <li>Iteratively solves partial differential equations to simulate fabrication/performance
+          </li>
+          <li> Saves large amounts of time and money to test new technology.
+          </li>
+        </ul>
+        I will be interning at a lab at Michigan State University this summer to perform defect measurements and TCAD simulation of GaN HEMTs. <br><br>
+
+        Because TCAD is such a complicated software, I made it a goal to familiarize myself with it before I started my internship in the summer.
+        My professor suggested that I replicate <a href="https://arxiv.org/pdf/2208.03576">one of his papers</a> in order to learn the software.
+        The general idea of this paper is to compare the results of two different equation solvers to study energy transport in GaN HEMTs.
+
+      </p>
+    </section>
+
+    <section>
+      <h2>Project Progress</h2>
+      <p>
+        The general workflow for device simulation is: 
+         <ul>
+           <li>Define geometry and contacts
+          </li>
+           <li>Complete doping and meshing
+          </li>
+          <li> Run simulation
+          </li>
+        </ul>
+        I began by defining the device geometry and contacts in the TCAD device editor, copying the dimensions and material types specified in the paper. The image below is taken from the paper, note that
+        the dimensions are not to scale so it will differ from my setup. <br><br>
+        <img src="../expected_geometry.png" alt="Expected HEMT Geometry" style="width: 40%; border: 1px solid #ccc;"> <br>
+        <br> Contacts in this case represent places where the device interacts with electrical terminals: source, gate, and drain. I added these where 
+        the original diagram specified. These contacts are indicated by the red lines as shown below.  <br><br>
+        <figure style="margin: 0; max-width: 45%; min-width: 300px;">
+        <img src="../device_zoomed_out.png" alt="Zoomed-Out View of HEMT" style="width: 100%; border: 1px solid #ccc;">
+        <img src="../device_zoomed_in.png" alt="Zoomed-In View of HEMT" style="width: 100%; border: 1px solid #ccc;">
+        <figcaption style="font-size: 11px; font-style: italic; margin-top: 8px; text-align: center;">
+          Zoomed-In and Zoomed-Out Views of GaN HEMT Geometry featuring Contacts
+        </figcaption>
+        <br>
+      </figure>
+        I then had to dope the source and drain contact device regions, as well as the large GaN buffer region. I applied phosphorous atoms
+        to the regions in the concentrations specified (10^19 cm^-3 for the contacts and 10^16 cm^-3 for the buffer). The purpose of doping
+        is to intentionally create imperfections in the GaN that allows electrical connections to work. This isn't visible in the device on TCAD
+        but it is set within the specification files. <br> <br>
+
+        The final step before running simulation was to create a mesh. This turns the high level geometry into smaller shapes that make it 
+        easier for the simulator to solve equations. I had to apply a fine mesh at the interface of the gate and the AlGaN layer, because this 
+        region is where the most change would occur. A finer mesh provides more accurate simulation.
+
+        I attempted to run a DC simulation to get the IV characteristics of the HEMT. Unfortunately, I was met with some issues relating to 
+        the actual parameters of the materials within my device. The main file is not able to read the material files. This is an issue that
+        I am currently trying to resolve. My first plan is to look at example simulations that come packaged with TCAD and see if I can replicate
+        how they define and use material parameters. My initial test with this was unsuccessful but this is the final step to achieving a result.
+        In order to verify that everything else was functional, I ran a simulation with a flag to ignore material issues. I was able to confirm that
+        the simulation ran, however the method for solving equations (Newton-Raphson method) was not converging. I suspect that this is because it defaulted
+        to the base material of silicon. Therefore, the final hurdle to overcome is the material definitions.
+      </p>
+    </section>
+
+    <section>
+      <h2>ECE Skill(s) Gained</h2>
+      <p>
+        This project gave me a solid understanding of how to use and navigate TCAD and what its applications are.
+        TCAD is a very useful tool for the field I want to go into (semiconductors), so it is great to learn it early. 
+        I will need it for the lab I am joining this fall, so I will continue to develop this skill. I specifically focused on 
+        the SDevice module, learning how to define geometry, contacts, doping, and meshing. 
+
+        Through this writeup, I solidified my understanding of the workflow and also learned more about device physics. 
+        When I did the TCAD work, I was applying concepts that I didn't fully understand, just trying to get a simulation to work.
+        By documenting my process and reflecting on it, I recognized gaps in my knowledge (like the advantages of GaN, or what source/gate/drain actually mean)
+        and I was able to fill in some of those gaps. For example, I learned that I made a mistake during doping. I needed to 
+        use silicon instead of phosphorous.
+      </p>
+    </section>
+
+    <section>
+      <h2>Overall Experience</h2>
+      <p>
+        Overall, this project has been a valuable learning experience. I had never used TCAD before,
+        but I knew it was a powerful tool in my field. I would say I am about 5% familiar with it now,
+        and I look forward to growing more proficient at it as I will need to use it in my upcoming lab work both
+        at MSU and GT. This has definitely reinforced my interst in my Electronic Devices thread,
+        as I find this work to be very interesting. It also made me more interested in Signal Processing,
+        as taking AI/ML-related classes could be useful if I want to work on EDA tools like TCAD. The next
+        steps for me are to fix my doping error and resolve my material parameter issue to 
+        get a visual graph output after successful simulation.
+      </p>
+</html>
